@@ -1,0 +1,6 @@
+{
+  "name": "My Exress App- development",
+  "mail": {
+    "host": "development-mail-server"
+  }
+}
