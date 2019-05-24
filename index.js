@@ -1,5 +1,5 @@
 const helmet = require('helmet'); //Help secure Express apps with various HTTP headers
-const morgan = require('morgan'); //production da kullanma, develop ozelligi - her requesti loglar (istersen kaydet)
+const morgan = require('morgan'); //production da kullanma!, develop ozelligi - her requesti loglar (istersen kaydet)
 const Joi = require('joi');
 const config = require('config'); // NODE_ENV degiskenindeki isme gore config/ icindeki ayni isimli dosya icerigini (json) obje olarak dondurur
 const express = require('express');
