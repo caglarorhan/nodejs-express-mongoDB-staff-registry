@@ -1,6 +1,8 @@
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
 const helmet = require('helmet'); //Help secure Express apps with various HTTP headers
 const morgan = require('morgan'); //production da kullanma!, develop ozelligi - her requesti loglar (istersen kaydet)
-const Joi = require('joi');
+const Joi = require('joi'); //validator
 const config = require('config'); // NODE_ENV degiskenindeki isme gore config/ icindeki ayni isimli dosya icerigini (json) obje olarak dondurur
 const express = require('express');
 const app = express();
@@ -11,9 +13,9 @@ app.use(express.static('public'));
 app.use(helmet());
 
 // configuration
-console.log('Application Name:'+config.get('name'))
-console.log('Mail server:'+config.get('mail.host'))
-console.log('Mail server:'+config.get('mail.password')) // production ortaminda elle cli uzerinden girilmeli set app_password=56789
+// console.log('Application Name:'+config.get('name'))
+// console.log('Mail server:'+config.get('mail.host'))
+// console.log('Mail server:'+config.get('mail.password')) // production ortaminda elle cli uzerinden girilmeli set app_password=56789
 
 
 console.log(`Node Env: ${process.env.NODE_ENV}`); // defult is undefined
@@ -21,10 +23,12 @@ console.log(`app : ${app.get('env')}`) // default is development
 
 if(app.get('env')==='development'){
     app.use(morgan('tiny'));//farkli formatlardan birisi secilebilir
-    console.log('Morgan enabled');
+    //console.log('Morgan enabled');
+    startupDebugger('Morgan enabled');
 }
 
-
+// DB work...
+dbDebugger('Connected to the database');
 
 const courses = [
     {id:1, name:'Course 1'},
